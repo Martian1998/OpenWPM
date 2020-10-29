@@ -33,7 +33,6 @@ dependencies:
 - tblib=1.6.0
 - wget=1.20.1
 - pip:
-  - amazon-kclpy==2.0.1
   - crontab==0.22.9
   - domain-utils==0.7.1
   - flask-cors==3.0.9
