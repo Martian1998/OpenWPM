@@ -30,6 +30,7 @@ from .utils.webdriver_utils import (
     wait_until_loaded,
 )
 
+
 # Constants for bot mitigation
 NUM_MOUSE_MOVES = 10  # Times to randomly move the mouse
 RANDOM_SLEEP_LOW = 1  # low (in sec) for random sleep between page loads
@@ -386,3 +387,12 @@ def finalize(
 def initialize(visit_id: int, extension_socket: clientsocket) -> None:
     msg = {"action": "Initialize", "visit_id": visit_id}
     extension_socket.send(msg)
+
+
+def jiggle_mouse(webdriver, number_jiggles):
+    for i in range(0, number_jiggles):
+        x = random.randrange(0, 100)
+        y = random.randrange(0, 100)
+        action = ActionChains(webdriver)
+        action.move_by_offset(x, y)
+        action.perform()

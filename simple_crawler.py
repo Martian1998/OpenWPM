@@ -34,6 +34,9 @@ for site in sites:
     command_sequence.get(sleep=0, timeout=60)
     command_sequence.screenshot_full_page()
     manager.execute_command_sequence(command_sequence) # ** = synchronized browsers
+    # ** = not synchronized browsers, it gives an error that index should not be an integer
+    # on base level function index is checked for none or an integer value 
+    
 
 # Shuts down the browsers and waits for the data to finish logging
 manager.close()

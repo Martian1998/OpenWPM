@@ -6,6 +6,12 @@ class BaseCommand:
     def set_start_time(self, start_time):
         self.start_time = start_time
 
+class JiggleCommand(BaseCommand):
+    def __init__(self, number_jiggles):
+        self.number_jiggles = number_jiggles
+    
+    def __repr__(self):
+        return "JiggleCommand({})".format(self.number_jiggles)
 
 class GetCommand(BaseCommand):
     def __init__(self, url, sleep):

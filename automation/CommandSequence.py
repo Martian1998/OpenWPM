@@ -12,6 +12,7 @@ from .Commands.Types import (
     RunCustomFunctionCommand,
     SaveScreenshotCommand,
     ScreenshotFullPageCommand,
+    JiggleCommand,
 )
 from .Errors import CommandExecutionError
 
@@ -73,6 +74,17 @@ class CommandSequence:
         self.contains_get_or_browse = False
         self.site_rank = site_rank
         self.callback = callback
+
+    #following demo
+    def jiggle_mouse(self, num_jiggles, timeout=60):
+        """ jiggles mouse <num_jiggles> times """
+        self.total_timeout += timeout
+        if not self.contains_get_or_browse:
+            raise CommandExecutionError("No get or browse request preceding "
+                                        "the jiggle_mouse command", self)
+        command = JiggleCommand(num_jiggles)
+        self._commands_with_timeout.append((command, timeout))
+
 
     def get(self, sleep=0, timeout=60):
         """ goes to a url """

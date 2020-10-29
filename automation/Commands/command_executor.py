@@ -11,6 +11,7 @@ from .Types import (
     RunCustomFunctionCommand,
     SaveScreenshotCommand,
     ScreenshotFullPageCommand,
+    JiggleCommand,
 )
 
 
@@ -25,7 +26,10 @@ def execute_command(
     """Executes BrowserManager commands
     commands are of form (COMMAND, ARG0, ARG1, ...)
     """
-    if type(command) is GetCommand:
+    if type(command) is JiggleCommand:
+        browser_commands.jiggle_mouse(webdriver=webdriver, number_jiggles=command.number_jiggles)
+
+    elif type(command) is GetCommand:
         browser_commands.get_website(
             url=command.url,
             sleep=command.sleep,
